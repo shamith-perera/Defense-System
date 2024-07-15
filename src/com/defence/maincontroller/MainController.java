@@ -22,7 +22,7 @@ public class MainController extends javax.swing.JFrame  {
         
     }
     public void getMsg(String msg){
-         recievedMessages.setText(recievedMessages.getText() + "\n" + msg);
+         recievedMessages.append("\n" + msg);
     }
     
     public void addUnitsToComboList(javax.swing.JComboBox<String> comboBox){
@@ -42,10 +42,7 @@ public class MainController extends javax.swing.JFrame  {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        buttonGroup2 = new javax.swing.ButtonGroup();
-        buttonGroup3 = new javax.swing.ButtonGroup();
-        buttonGroup4 = new javax.swing.ButtonGroup();
+        sendMessageGroup = new javax.swing.ButtonGroup();
         isAreaCleared = new javax.swing.JCheckBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         msgToSend = new javax.swing.JTextArea();
@@ -84,7 +81,7 @@ public class MainController extends javax.swing.JFrame  {
         recievedMessages.setRows(5);
         jScrollPane2.setViewportView(recievedMessages);
 
-        buttonGroup1.add(sendAllSelection);
+        sendMessageGroup.add(sendAllSelection);
         sendAllSelection.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         sendAllSelection.setText("to All Units");
         sendAllSelection.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +90,7 @@ public class MainController extends javax.swing.JFrame  {
             }
         });
 
-        buttonGroup1.add(sendUnitSelection);
+        sendMessageGroup.add(sendUnitSelection);
         sendUnitSelection.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         sendUnitSelection.setText("to a Selectecd Unit");
         sendUnitSelection.addActionListener(new java.awt.event.ActionListener() {
@@ -129,7 +126,7 @@ public class MainController extends javax.swing.JFrame  {
                         .addComponent(isAreaCleared, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 250, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane2)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,10 +221,6 @@ public class MainController extends javax.swing.JFrame  {
      * @param args the command line arguments
      */
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.ButtonGroup buttonGroup3;
-    private javax.swing.ButtonGroup buttonGroup4;
     private javax.swing.JCheckBox isAreaCleared;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -235,6 +228,7 @@ public class MainController extends javax.swing.JFrame  {
     private javax.swing.JTextArea recievedMessages;
     private javax.swing.JRadioButton sendAllSelection;
     private javax.swing.JButton sendButton;
+    private javax.swing.ButtonGroup sendMessageGroup;
     private javax.swing.JRadioButton sendUnitSelection;
     private javax.swing.JComboBox<String> sendUnitSelectionBox;
     // End of variables declaration//GEN-END:variables

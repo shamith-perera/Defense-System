@@ -7,11 +7,9 @@ package com.defence.units;
 import com.defence.mainunit.SuperDefence;
 import javax.swing.JSpinner;
 import com.defence.maincontroller.MainController;
-import com.defence.utilities.Strength;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JSlider;
-import javax.swing.event.ChangeEvent;
 
 /**
  *
@@ -97,7 +95,7 @@ public class Helicopter extends SuperDefence {
         addButtonToOperationsPanel(laserBtn);
 
         fuelSlider = new JSlider();
-        fuelSlider.addChangeListener((ChangeEvent e) -> {
+        fuelSlider.addChangeListener((javax.swing.event.ChangeEvent e) -> {
             fuelLevel = fuelSlider.getValue();
             mainControllerInterface.reportStatusChange();
         });

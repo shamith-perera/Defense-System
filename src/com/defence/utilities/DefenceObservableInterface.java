@@ -17,8 +17,8 @@ public interface DefenceObservableInterface {
     public String[] getAllUnits();
 
     public void sendMsgtoUnitInIndex(int index, String msg);
-    
+
     public String getStatusOfUnitInIndex(int index);
-    
+
     public void sendStrengthToUnits(Strength strength);
 }

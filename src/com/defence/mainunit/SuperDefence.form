@@ -1,23 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
-  <NonVisualComponents>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane2">
-      <AuxValues>
-        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-      </AuxValues>
-
-      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-      <SubComponents>
-        <Component class="javax.swing.JTextArea" name="jTextArea1">
-          <Properties>
-            <Property name="columns" type="int" value="20"/>
-            <Property name="rows" type="int" value="5"/>
-          </Properties>
-        </Component>
-      </SubComponents>
-    </Container>
-  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -54,8 +37,8 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="areaStatusPanel" pref="155" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="unitNameLabel" max="32767" attributes="0"/>
-                          <Component id="recMsgPanel" alignment="1" max="32767" attributes="0"/>
+                          <Component id="unitNameTitle" max="32767" attributes="0"/>
+                          <Component id="recievedMsgPanel" alignment="1" max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
@@ -70,7 +53,7 @@
                                       <Component id="operationsTitle" min="-2" pref="111" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="jScrollPane6" alignment="1" min="-2" pref="210" max="-2" attributes="0"/>
+                                  <Component id="operationsScrollPane" alignment="1" min="-2" pref="210" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -83,7 +66,7 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane4" min="-2" pref="177" max="-2" attributes="0"/>
+                  <Component id="unitStatusScrollPane" min="-2" pref="177" max="-2" attributes="0"/>
                   <Component id="unitStatusTitle" min="-2" pref="164" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -107,14 +90,14 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="operationsTitle" min="-2" pref="13" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jScrollPane6" max="32767" attributes="0"/>
+                              <Component id="operationsScrollPane" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="jScrollPane4" max="32767" attributes="0"/>
+                          <Component id="unitStatusScrollPane" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="0" pref="3" max="32767" attributes="0"/>
-                      <Component id="unitNameLabel" min="-2" pref="39" max="-2" attributes="0"/>
+                      <Component id="unitNameTitle" min="-2" pref="39" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="areaStatusPanel" min="-2" pref="33" max="-2" attributes="0"/>
@@ -123,7 +106,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="sendMessagePanel" min="-2" pref="127" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                      <Component id="recMsgPanel" min="-2" max="-2" attributes="0"/>
+                      <Component id="recievedMsgPanel" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -132,7 +115,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="unitNameLabel">
+    <Component class="javax.swing.JLabel" name="unitNameTitle">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="99" green="cc" red="0" type="rgb"/>
@@ -178,9 +161,6 @@
               <Dimension value="[234, 137]"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="supplyStatusPanelKeyTyped"/>
-          </Events>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
             <Property name="columns" type="int" value="1"/>
@@ -211,7 +191,7 @@
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="areaStatusTitle" min="-2" pref="53" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="areaStatusMsg" min="-2" pref="67" max="-2" attributes="0"/>
+                  <Component id="areaStatusLabel" min="-2" pref="67" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -224,7 +204,7 @@
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="areaStatusMsg" min="-2" pref="22" max="-2" attributes="0"/>
+                  <Component id="areaStatusLabel" min="-2" pref="22" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -246,7 +226,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="areaStatusMsg">
+        <Component class="javax.swing.JLabel" name="areaStatusLabel">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="cc" type="rgb"/>
@@ -281,11 +261,11 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane3" max="32767" attributes="0"/>
+                      <Component id="msgSendScrollPane" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="sendMsgTitle" min="-2" pref="135" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="sendMsg" min="-2" max="-2" attributes="0"/>
+                          <Component id="sendMsgBtn" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -298,21 +278,21 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="sendMsg" min="-2" pref="17" max="-2" attributes="0"/>
+                      <Component id="sendMsgBtn" min="-2" pref="17" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
                           <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
                           <Component id="sendMsgTitle" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jScrollPane3" min="-2" max="-2" attributes="0"/>
+                  <Component id="msgSendScrollPane" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+        <Container class="javax.swing.JScrollPane" name="msgSendScrollPane">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>
@@ -331,7 +311,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="sendMsg">
+        <Component class="javax.swing.JButton" name="sendMsgBtn">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="ff" red="ff" type="rgb"/>
@@ -342,7 +322,7 @@
             <Property name="text" type="java.lang.String" value="Send"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sendMsgActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sendMsgBtnActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="sendMsgTitle">
@@ -355,7 +335,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="recMsgPanel">
+    <Container class="javax.swing.JPanel" name="recievedMsgPanel">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -374,7 +354,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="recMsgTitle" max="32767" attributes="0"/>
-                      <Component id="jScrollPane1" pref="234" max="32767" attributes="0"/>
+                      <Component id="recievedMsgScrollPane" pref="234" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -386,21 +366,21 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="recMsgTitle" min="-2" pref="16" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" pref="95" max="32767" attributes="0"/>
+                  <Component id="recievedMsgScrollPane" pref="95" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+        <Container class="javax.swing.JScrollPane" name="recievedMsgScrollPane">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextArea" name="recievedMsg">
+            <Component class="javax.swing.JTextArea" name="recievedMsgDisplay">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -470,7 +450,6 @@
             <Property name="text" type="java.lang.String" value="Postion"/>
           </Properties>
           <Events>
-            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="positionCheckBoxStateChanged"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="positionCheckBoxActionPerformed"/>
           </Events>
         </Component>
@@ -506,7 +485,7 @@
         </Property>
       </Properties>
     </Component>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane6">
+    <Container class="javax.swing.JScrollPane" name="operationsScrollPane">
       <Properties>
         <Property name="verticalScrollBarPolicy" type="int" value="22"/>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -516,7 +495,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="operationsStatusPanel">
+        <Container class="javax.swing.JPanel" name="operationsBtnPanel">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -533,9 +512,6 @@
               <Dimension value="[234, 137]"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="operationsStatusPanelKeyTyped"/>
-          </Events>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
             <Property name="columns" type="int" value="1"/>
@@ -559,7 +535,7 @@
         </Property>
       </Properties>
     </Component>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane4">
+    <Container class="javax.swing.JScrollPane" name="unitStatusScrollPane">
       <Properties>
         <Property name="horizontalScrollBarPolicy" type="int" value="32"/>
       </Properties>

@@ -6,11 +6,6 @@ package com.defence.units;
 
 import com.defence.mainunit.SuperDefence;
 import com.defence.maincontroller.MainController;
-import com.defence.utilities.Strength;
-import static com.defence.utilities.Strength.HIGH;
-import static com.defence.utilities.Strength.LOW;
-import static com.defence.utilities.Strength.MEDIUM;
-import static com.defence.utilities.Strength.STRONG;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JSlider;

@@ -35,27 +35,40 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
         this.unitName = unitName;
         this.mainControllerInterface = mainControllerInterface;
         this.warStrength = Strength.CLOSED;
-        isPostioned = false;
+        this.isPostioned = false;
         initComponents();
         setTitle(unitName);
-        unitNameLabel.setText(unitName);
-        areaStatusMsg.setText("Not Cleared");
+        unitNameTitle.setText(unitName);
+        areaStatusLabel.setText("Not Cleared");
     }
 
     @Override
     public void setAreaStatus(boolean status) {
-        this.areaStatusMsg.setText(status ? "Cleared" : "Not Cleared");
+        this.areaStatusLabel.setText(status ? "Cleared" : "Not Cleared");
     }
 
     @Override
-    public void getMsg(String msg) {
-        recievedMsg.setText(recievedMsg.getText() + msg);
+    public void sendMsg(String msg) {
+        recievedMsgDisplay.append(msg + "\n");
     }
 
     @Override
     public String getName() {
-        return unitName;
+        return this.unitName;
     }
+
+    @Override
+    public final void sendStrength(Strength strength) {
+
+        this.warStrength = strength;
+        if (isPostioned) {
+            unlockOperationsAccordingToStrength();
+        }
+    }
+
+    protected abstract void unlockOperationsAccordingToStrength();
+
+    protected abstract void disableAllOperations();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -66,48 +79,42 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        unitNameLabel = new javax.swing.JLabel();
+        unitNameTitle = new javax.swing.JLabel();
         supplyStatusScrollPane = new javax.swing.JScrollPane();
         supplyStatusPanel = new javax.swing.JPanel();
         areaStatusPanel = new javax.swing.JPanel();
         areaStatusTitle = new javax.swing.JLabel();
-        areaStatusMsg = new javax.swing.JLabel();
+        areaStatusLabel = new javax.swing.JLabel();
         sendMessagePanel = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
+        msgSendScrollPane = new javax.swing.JScrollPane();
         msgToSend = new javax.swing.JTextArea();
-        sendMsg = new javax.swing.JButton();
+        sendMsgBtn = new javax.swing.JButton();
         sendMsgTitle = new javax.swing.JLabel();
-        recMsgPanel = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        recievedMsg = new javax.swing.JTextArea();
+        recievedMsgPanel = new javax.swing.JPanel();
+        recievedMsgScrollPane = new javax.swing.JScrollPane();
+        recievedMsgDisplay = new javax.swing.JTextArea();
         recMsgTitle = new javax.swing.JLabel();
         positionPanel = new javax.swing.JPanel();
         positionCheckBox = new javax.swing.JCheckBox();
         suplyStatusTitle = new javax.swing.JLabel();
         operationsTitle = new javax.swing.JLabel();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        operationsStatusPanel = new javax.swing.JPanel();
+        operationsScrollPane = new javax.swing.JScrollPane();
+        operationsBtnPanel = new javax.swing.JPanel();
         unitStatusTitle = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
+        unitStatusScrollPane = new javax.swing.JScrollPane();
         unitStatusPanel = new javax.swing.JPanel();
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(102, 153, 0));
         setResizable(false);
 
-        unitNameLabel.setBackground(new java.awt.Color(0, 204, 153));
-        unitNameLabel.setFont(new java.awt.Font("Calibri", 1, 20)); // NOI18N
-        unitNameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        unitNameLabel.setText("Unit Name");
-        unitNameLabel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
-        unitNameLabel.setFocusable(false);
-        unitNameLabel.setOpaque(true);
+        unitNameTitle.setBackground(new java.awt.Color(0, 204, 153));
+        unitNameTitle.setFont(new java.awt.Font("Calibri", 1, 20)); // NOI18N
+        unitNameTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        unitNameTitle.setText("Unit Name");
+        unitNameTitle.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        unitNameTitle.setFocusable(false);
+        unitNameTitle.setOpaque(true);
 
         supplyStatusScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         supplyStatusScrollPane.setMinimumSize(new java.awt.Dimension(16, 6));
@@ -116,11 +123,6 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
         supplyStatusPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
         supplyStatusPanel.setMaximumSize(new java.awt.Dimension(234, 137));
         supplyStatusPanel.setMinimumSize(new java.awt.Dimension(234, 137));
-        supplyStatusPanel.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                supplyStatusPanelKeyTyped(evt);
-            }
-        });
         supplyStatusPanel.setLayout(new java.awt.GridLayout(0, 1));
         supplyStatusScrollPane.setViewportView(supplyStatusPanel);
 
@@ -134,11 +136,11 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
         areaStatusTitle.setText("Area Status");
         areaStatusTitle.setPreferredSize(new java.awt.Dimension(75, 25));
 
-        areaStatusMsg.setBackground(new java.awt.Color(204, 0, 0));
-        areaStatusMsg.setFont(new java.awt.Font("Calibri", 1, 10)); // NOI18N
-        areaStatusMsg.setForeground(new java.awt.Color(255, 255, 255));
-        areaStatusMsg.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        areaStatusMsg.setOpaque(true);
+        areaStatusLabel.setBackground(new java.awt.Color(204, 0, 0));
+        areaStatusLabel.setFont(new java.awt.Font("Calibri", 1, 10)); // NOI18N
+        areaStatusLabel.setForeground(new java.awt.Color(255, 255, 255));
+        areaStatusLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        areaStatusLabel.setOpaque(true);
 
         javax.swing.GroupLayout areaStatusPanelLayout = new javax.swing.GroupLayout(areaStatusPanel);
         areaStatusPanel.setLayout(areaStatusPanelLayout);
@@ -148,7 +150,7 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(areaStatusTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(areaStatusMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(areaStatusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
         );
         areaStatusPanelLayout.setVerticalGroup(
@@ -158,7 +160,7 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
                 .addComponent(areaStatusTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(areaStatusPanelLayout.createSequentialGroup()
-                .addComponent(areaStatusMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(areaStatusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -169,14 +171,14 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
         msgToSend.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
         msgToSend.setLineWrap(true);
         msgToSend.setRows(5);
-        jScrollPane3.setViewportView(msgToSend);
+        msgSendScrollPane.setViewportView(msgToSend);
 
-        sendMsg.setBackground(new java.awt.Color(255, 255, 204));
-        sendMsg.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
-        sendMsg.setText("Send");
-        sendMsg.addActionListener(new java.awt.event.ActionListener() {
+        sendMsgBtn.setBackground(new java.awt.Color(255, 255, 204));
+        sendMsgBtn.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        sendMsgBtn.setText("Send");
+        sendMsgBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sendMsgActionPerformed(evt);
+                sendMsgBtnActionPerformed(evt);
             }
         });
 
@@ -190,11 +192,11 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
             .addGroup(sendMessagePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(sendMessagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3)
+                    .addComponent(msgSendScrollPane)
                     .addGroup(sendMessagePanelLayout.createSequentialGroup()
                         .addComponent(sendMsgTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sendMsg)
+                        .addComponent(sendMsgBtn)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -203,48 +205,48 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
             .addGroup(sendMessagePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(sendMessagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(sendMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sendMsgBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(sendMessagePanelLayout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addComponent(sendMsgTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(msgSendScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42))
         );
 
-        recMsgPanel.setBackground(new java.awt.Color(204, 204, 204));
-        recMsgPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        recievedMsgPanel.setBackground(new java.awt.Color(204, 204, 204));
+        recievedMsgPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
 
-        recievedMsg.setEditable(false);
-        recievedMsg.setBackground(new java.awt.Color(204, 255, 255));
-        recievedMsg.setColumns(20);
-        recievedMsg.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
-        recievedMsg.setLineWrap(true);
-        recievedMsg.setRows(5);
-        jScrollPane1.setViewportView(recievedMsg);
+        recievedMsgDisplay.setEditable(false);
+        recievedMsgDisplay.setBackground(new java.awt.Color(204, 255, 255));
+        recievedMsgDisplay.setColumns(20);
+        recievedMsgDisplay.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        recievedMsgDisplay.setLineWrap(true);
+        recievedMsgDisplay.setRows(5);
+        recievedMsgScrollPane.setViewportView(recievedMsgDisplay);
 
         recMsgTitle.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         recMsgTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         recMsgTitle.setText("Main Controller Messages");
 
-        javax.swing.GroupLayout recMsgPanelLayout = new javax.swing.GroupLayout(recMsgPanel);
-        recMsgPanel.setLayout(recMsgPanelLayout);
-        recMsgPanelLayout.setHorizontalGroup(
-            recMsgPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(recMsgPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout recievedMsgPanelLayout = new javax.swing.GroupLayout(recievedMsgPanel);
+        recievedMsgPanel.setLayout(recievedMsgPanelLayout);
+        recievedMsgPanelLayout.setHorizontalGroup(
+            recievedMsgPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(recievedMsgPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(recMsgPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(recievedMsgPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(recMsgTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE))
+                    .addComponent(recievedMsgScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        recMsgPanelLayout.setVerticalGroup(
-            recMsgPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, recMsgPanelLayout.createSequentialGroup()
+        recievedMsgPanelLayout.setVerticalGroup(
+            recievedMsgPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, recievedMsgPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(recMsgTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+                .addComponent(recievedMsgScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -254,11 +256,6 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
         positionCheckBox.setBackground(new java.awt.Color(204, 204, 204));
         positionCheckBox.setFont(new java.awt.Font("Consolas", 1, 10)); // NOI18N
         positionCheckBox.setText("Postion");
-        positionCheckBox.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                positionCheckBoxStateChanged(evt);
-            }
-        });
         positionCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 positionCheckBoxActionPerformed(evt);
@@ -293,20 +290,15 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
         operationsTitle.setText("Operations");
         operationsTitle.setPreferredSize(new java.awt.Dimension(102, 25));
 
-        jScrollPane6.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        jScrollPane6.setMinimumSize(new java.awt.Dimension(16, 6));
+        operationsScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        operationsScrollPane.setMinimumSize(new java.awt.Dimension(16, 6));
 
-        operationsStatusPanel.setBackground(new java.awt.Color(204, 204, 204));
-        operationsStatusPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
-        operationsStatusPanel.setMaximumSize(new java.awt.Dimension(234, 137));
-        operationsStatusPanel.setMinimumSize(new java.awt.Dimension(234, 137));
-        operationsStatusPanel.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                operationsStatusPanelKeyTyped(evt);
-            }
-        });
-        operationsStatusPanel.setLayout(new java.awt.GridLayout(0, 1));
-        jScrollPane6.setViewportView(operationsStatusPanel);
+        operationsBtnPanel.setBackground(new java.awt.Color(204, 204, 204));
+        operationsBtnPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        operationsBtnPanel.setMaximumSize(new java.awt.Dimension(234, 137));
+        operationsBtnPanel.setMinimumSize(new java.awt.Dimension(234, 137));
+        operationsBtnPanel.setLayout(new java.awt.GridLayout(0, 1));
+        operationsScrollPane.setViewportView(operationsBtnPanel);
 
         unitStatusTitle.setBackground(new java.awt.Color(110, 161, 113));
         unitStatusTitle.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
@@ -314,11 +306,11 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
         unitStatusTitle.setText("Unit Status");
         unitStatusTitle.setPreferredSize(new java.awt.Dimension(250, 35));
 
-        jScrollPane4.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        unitStatusScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 
         unitStatusPanel.setBackground(new java.awt.Color(204, 204, 204));
         unitStatusPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
-        jScrollPane4.setViewportView(unitStatusPanel);
+        unitStatusScrollPane.setViewportView(unitStatusPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -333,8 +325,8 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
                                 .addComponent(positionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(areaStatusPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 155, Short.MAX_VALUE))
-                            .addComponent(unitNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(recMsgPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(unitNameTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(recievedMsgPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(42, 42, 42)
@@ -346,14 +338,14 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
                                         .addGap(36, 36, 36)
                                         .addComponent(operationsTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(63, 63, 63))
-                                    .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(operationsScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(sendMessagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(supplyStatusScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(unitStatusScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(unitStatusTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -373,11 +365,11 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(operationsTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jScrollPane4)))
+                                .addComponent(operationsScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(unitStatusScrollPane)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 3, Short.MAX_VALUE)
-                        .addComponent(unitNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(unitNameTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(areaStatusPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -385,44 +377,31 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(sendMessagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(7, 7, 7)
-                        .addComponent(recMsgPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(recievedMsgPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void sendMsgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendMsgActionPerformed
+    private void sendMsgBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendMsgBtnActionPerformed
         // TODO add your handling code here:
         if (!msgToSend.getText().equals("")) {
-            mainControllerInterface.getMsg(unitName + " : " + msgToSend.getText());
+            mainControllerInterface.sendMsg(unitName + " : " + msgToSend.getText());
         }
         msgToSend.setText("");
-    }//GEN-LAST:event_sendMsgActionPerformed
-
-    private void supplyStatusPanelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_supplyStatusPanelKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_supplyStatusPanelKeyTyped
+    }//GEN-LAST:event_sendMsgBtnActionPerformed
 
     private void positionCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_positionCheckBoxActionPerformed
         // TODO add your handling code here:
         isPostioned = positionCheckBox.isSelected();
-        mainControllerInterface.getMsg(unitName + " : " + (isPostioned ? "Positioned" : "Left Position"));
-        if(isPostioned){
+        mainControllerInterface.sendMsg(unitName + " : " + (isPostioned ? "Positioned" : "Left Position"));
+        if (isPostioned) {
             unlockOperationsAccordingToStrength();
-        }else{
+        } else {
             disableAllOperations();
         }
     }//GEN-LAST:event_positionCheckBoxActionPerformed
-
-    private void positionCheckBoxStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_positionCheckBoxStateChanged
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_positionCheckBoxStateChanged
-
-    private void operationsStatusPanelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_operationsStatusPanelKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_operationsStatusPanelKeyTyped
 
     public final void addSpinnerToSupplyStatusPanel(JSpinner spinner, String Label, int max, int min, int defaultVal) {
         spinner.setFont(new java.awt.Font("Calibri", 1, 12));
@@ -447,7 +426,7 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
         button.setEnabled(false);
         JPanel panel = new JPanel(new FlowLayout());
         panel.add(button);
-        operationsStatusPanel.add(panel);
+        operationsBtnPanel.add(panel);
     }
 
     public final void addSliderToUnistStatusPanel(JSlider slider, String label, int min, int max, int defVal) {
@@ -477,48 +456,30 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel areaStatusMsg;
+    private javax.swing.JLabel areaStatusLabel;
     private javax.swing.JPanel areaStatusPanel;
     private javax.swing.JLabel areaStatusTitle;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JScrollPane msgSendScrollPane;
     private javax.swing.JTextArea msgToSend;
-    private javax.swing.JPanel operationsStatusPanel;
+    private javax.swing.JPanel operationsBtnPanel;
+    private javax.swing.JScrollPane operationsScrollPane;
     private javax.swing.JLabel operationsTitle;
     private javax.swing.JCheckBox positionCheckBox;
     private javax.swing.JPanel positionPanel;
-    private javax.swing.JPanel recMsgPanel;
     private javax.swing.JLabel recMsgTitle;
-    private javax.swing.JTextArea recievedMsg;
+    private javax.swing.JTextArea recievedMsgDisplay;
+    private javax.swing.JPanel recievedMsgPanel;
+    private javax.swing.JScrollPane recievedMsgScrollPane;
     private javax.swing.JPanel sendMessagePanel;
-    private javax.swing.JButton sendMsg;
+    private javax.swing.JButton sendMsgBtn;
     private javax.swing.JLabel sendMsgTitle;
     private javax.swing.JLabel suplyStatusTitle;
     private javax.swing.JPanel supplyStatusPanel;
     private javax.swing.JScrollPane supplyStatusScrollPane;
-    private javax.swing.JLabel unitNameLabel;
+    private javax.swing.JLabel unitNameTitle;
     private javax.swing.JPanel unitStatusPanel;
+    private javax.swing.JScrollPane unitStatusScrollPane;
     private javax.swing.JLabel unitStatusTitle;
     // End of variables declaration//GEN-END:variables
 
-    protected abstract void unlockOperationsAccordingToStrength();
-
-    protected abstract void  disableAllOperations();
-    
-    @Override
-    public final void sendStrength(Strength strength){
-       
-       this.warStrength = strength; 
-       if(isPostioned){
-           unlockOperationsAccordingToStrength();
-       } 
-    }
-      
-    
-       
-    
 }

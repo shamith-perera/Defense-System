@@ -6,15 +6,10 @@ package com.defence.units;
 
 import com.defence.mainunit.SuperDefence;
 import com.defence.maincontroller.MainController;
-import static com.defence.utilities.Strength.HIGH;
-import static com.defence.utilities.Strength.LOW;
-import static com.defence.utilities.Strength.MEDIUM;
-import static com.defence.utilities.Strength.STRONG;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JSlider;
 import javax.swing.JSpinner;
-import javax.swing.event.ChangeEvent;
 
 /**
  *
@@ -128,14 +123,14 @@ public class Submarine extends SuperDefence {
         addButtonToOperationsPanel(tridentmissileBtn);
 
         fuelSlider = new JSlider();
-        fuelSlider.addChangeListener((ChangeEvent e) -> {
+        fuelSlider.addChangeListener((javax.swing.event.ChangeEvent e) -> {
             fuelLevel = fuelSlider.getValue();
             mainControllerInterface.reportStatusChange();
         });
         addSliderToUnistStatusPanel(fuelSlider, "Fuel", 0, 100, 100);
 
         oxygenSlider = new JSlider();
-        oxygenSlider.addChangeListener((ChangeEvent e) -> {
+        oxygenSlider.addChangeListener((javax.swing.event.ChangeEvent e) -> {
             oxygenLevel = oxygenSlider.getValue();
             mainControllerInterface.reportStatusChange();
         });

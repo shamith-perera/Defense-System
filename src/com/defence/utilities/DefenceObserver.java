@@ -12,7 +12,11 @@ public interface DefenceObserver {
 
     public void setAreaStatus(boolean status);
 
-    public void getMsg(String msg);
+    /**
+     *
+     * @param msg
+     */
+    public void sendMsg(String msg);
 
     public String getName();
     

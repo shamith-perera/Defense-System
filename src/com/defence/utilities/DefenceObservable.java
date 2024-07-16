@@ -32,7 +32,7 @@ public class DefenceObservable implements DefenceObservableInterface {
     @Override
     public void sendMsgtoAllUnits(String msg) {
         for (DefenceObserver unit : defenceUnits) {
-            unit.getMsg(msg);
+            unit.sendMsg(msg);
         }
     }
 
@@ -48,17 +48,17 @@ public class DefenceObservable implements DefenceObservableInterface {
 
     @Override
     public void sendMsgtoUnitInIndex(int index, String msg) {
-        defenceUnits.get(index).getMsg(msg);
+        defenceUnits.get(index).sendMsg(msg);
 
     }
-    
+
     @Override
-    public String getStatusOfUnitInIndex(int index){
+    public String getStatusOfUnitInIndex(int index) {
         return defenceUnits.get(index).getStatus();
     }
-    
+
     @Override
-    public void sendStrengthToUnits(Strength strength){
+    public void sendStrengthToUnits(Strength strength) {
         for (DefenceObserver unit : defenceUnits) {
             unit.sendStrength(strength);
         }

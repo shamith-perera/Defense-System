@@ -10,7 +10,7 @@ package com.defence.maincontroller;
  */
 public interface MainControllerInterface {
 
-    public void getMsg(String msg);
+    public void sendMsg(String msg);
 
     public void reportStatusChange();
 }

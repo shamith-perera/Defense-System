@@ -4,14 +4,21 @@
  */
 package com.defence.utilities;
 
-
 /**
  *
  * @author shami
  */
 public interface DefenceObservableInterface {
-    public void sendAreaStatus(int status);
+
+    public void sendAreaStatus(boolean status);
+
     public void sendMsgtoAllUnits(String msg);
+
     public String[] getAllUnits();
-    public void sendMsgtoUnitInIndex(int index,String msg);
+
+    public void sendMsgtoUnitInIndex(int index, String msg);
+    
+    public String getStatusOfUnitInIndex(int index);
+    
+    public void sendStrengthToUnits(Strength strength);
 }

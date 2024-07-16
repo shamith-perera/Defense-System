@@ -5,17 +5,21 @@
 import com.defence.utilities.DefenceObservable;
 import com.defence.maincontroller.MainController;
 import com.defence.units.*;
+import com.defence.utilities.Strength;
+
 /**
  *
  * @author shami
  */
 public class Starter {
-    public static void main(String args[]){
+
+    public static void main(String args[]) {
         DefenceObservable defenceObservale = new DefenceObservable();
         MainController mainController = new MainController(defenceObservale);
-        defenceObservale.add(new Tank("Panzer",mainController));
-        defenceObservale.add(new Submarine("2",mainController));
-        defenceObservale.add(new Helicopter("Monster",mainController));
+        defenceObservale.add(new Tank("1", mainController));
+        defenceObservale.add(new Submarine("1", mainController));
+        defenceObservale.add(new Helicopter("1", mainController));
+        defenceObservale.sendStrengthToUnits(Strength.CLOSED);
     }
-    
+
 }

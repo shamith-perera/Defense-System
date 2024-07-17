@@ -4,6 +4,8 @@
  */
 package com.defence.utilities;
 
+
+
 /**
  *
  * @author shami
@@ -14,11 +16,13 @@ public interface DefenceObservableInterface {
 
     public void sendMsgtoAllUnits(String msg);
 
-    public String[] getAllUnits();
+    public Object[] getAllUnits();
 
-    public void sendMsgtoUnitInIndex(int index, String msg);
+    public void sendMsgtoUnit(Object unit, String msg);
 
-    public String getStatusOfUnitInIndex(int index);
+    public void enableTrackingForUnit(Object unit);
 
     public void sendStrengthToUnits(Strength strength);
+    
+    
 }

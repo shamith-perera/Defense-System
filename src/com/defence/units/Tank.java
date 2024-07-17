@@ -6,6 +6,7 @@ package com.defence.units;
 
 import com.defence.mainunit.SuperDefence;
 import com.defence.maincontroller.MainController;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JSlider;
@@ -37,25 +38,26 @@ public class Tank extends SuperDefence {
         this.soldierCount = 5;
         this.missileCount = 30;
         this.fuelLevel = 100;
+        unitNameTitle.setIcon(new ImageIcon("src/com/defence/icons/tank.png"));
 
         ammoCountSpinner = new JSpinner();
         ammoCountSpinner.addChangeListener((javax.swing.event.ChangeEvent evt) -> {
             ammoCount = (int) ammoCountSpinner.getValue();
-            mainControllerInterface.reportStatusChange();
+            unitStatusChanged();
         });
         addSpinnerToSupplyStatusPanel(ammoCountSpinner, "Ammo Count", 200, 0, 200);
 
         missileCountSpinner = new JSpinner();
         missileCountSpinner.addChangeListener((javax.swing.event.ChangeEvent evt) -> {
             missileCount = (int) missileCountSpinner.getValue();
-            mainControllerInterface.reportStatusChange();
+            unitStatusChanged();
         });
         addSpinnerToSupplyStatusPanel(missileCountSpinner, "Missile Count", 30, 0, 30);
 
         soldierCountSpinner = new JSpinner();
         soldierCountSpinner.addChangeListener((javax.swing.event.ChangeEvent evt) -> {
             soldierCount = (int) soldierCountSpinner.getValue();
-            mainControllerInterface.reportStatusChange();
+            unitStatusChanged();
         });
         addSpinnerToSupplyStatusPanel(soldierCountSpinner, "Soldier Count", 5, 0, 5);
 
@@ -66,7 +68,7 @@ public class Tank extends SuperDefence {
                     ammoCount--;
                     int currentValue = (int) ammoCountSpinner.getValue();
                     ammoCountSpinner.setValue(--currentValue);
-                    mainControllerInterface.reportStatusChange();
+                    unitStatusChanged();
                 } else {
                     JOptionPane.showMessageDialog(this, "No Ammo !!! Refill to Shoot", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -81,7 +83,7 @@ public class Tank extends SuperDefence {
                     missileCount--;
                     int currentValue = (int) missileCountSpinner.getValue();
                     missileCountSpinner.setValue(--currentValue);
-                    mainControllerInterface.reportStatusChange();
+                  unitStatusChanged();
                 } else {
                     JOptionPane.showMessageDialog(this, "No Ammo !!! Refill to Shoot", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -103,7 +105,7 @@ public class Tank extends SuperDefence {
                     ammoCount--;
                     int currentValue = (int) ammoCountSpinner.getValue();
                     ammoCountSpinner.setValue(currentValue - 4);
-                    mainControllerInterface.reportStatusChange();
+                    unitStatusChanged();
                 } else {
                     JOptionPane.showMessageDialog(this, "No Enough Ammo to Rotate Shoot !!! Refill to Shoot", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -114,10 +116,10 @@ public class Tank extends SuperDefence {
         fuelSlider = new JSlider();
         fuelSlider.addChangeListener((ChangeEvent e) -> {
             fuelLevel = fuelSlider.getValue();
-            mainControllerInterface.reportStatusChange();
+            unitStatusChanged();
         });
         addSliderToUnistStatusPanel(fuelSlider, "Fuel", 0, 100, 100);
-
+        setLocation(800, 0);
         setVisible(true);
     }
 
@@ -130,7 +132,7 @@ public class Tank extends SuperDefence {
     }
 
     @Override
-    public String getStatus() {
+    protected String generateStatusReport() {
         String status = "  Ammo\t : " + ammoCount + "\n";
         status += "  Missiles\t : " + missileCount + "\n";
         status += "  Soldiers\t : " + soldierCount + "\n\n";

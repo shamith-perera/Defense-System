@@ -133,6 +133,9 @@
         <Property name="focusable" type="boolean" value="false"/>
         <Property name="opaque" type="boolean" value="true"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
+      </AuxValues>
     </Component>
     <Container class="javax.swing.JScrollPane" name="supplyStatusScrollPane">
       <Properties>

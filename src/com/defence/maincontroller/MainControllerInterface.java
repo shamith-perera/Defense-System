@@ -13,4 +13,6 @@ public interface MainControllerInterface {
     public void sendMsg(String msg);
 
     public void reportStatusChange();
+    
+    public void sendStatusReport(String report);
 }

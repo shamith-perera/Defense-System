@@ -37,24 +37,27 @@ public class DefenceObservable implements DefenceObservableInterface {
     }
 
     @Override
-    public String[] getAllUnits() {
-        String[] unitNamesArray = new String[defenceUnits.size()];
+    public Object[] getAllUnits() {
+        Object[] unitArray = new Object[defenceUnits.size()];
         for (int i = 0; i < defenceUnits.size(); i++) {
-            unitNamesArray[i] = defenceUnits.get(i).getName();
+            unitArray[i] = defenceUnits.get(i);
 
         }
-        return unitNamesArray;
+        return unitArray;
     }
 
     @Override
-    public void sendMsgtoUnitInIndex(int index, String msg) {
-        defenceUnits.get(index).sendMsg(msg);
+    public void sendMsgtoUnit(Object unit, String msg) {
+       ((DefenceObserver)unit).sendMsg(msg);
 
     }
 
     @Override
-    public String getStatusOfUnitInIndex(int index) {
-        return defenceUnits.get(index).getStatus();
+    public void enableTrackingForUnit(Object unitToEnable) {
+        for (DefenceObserver unit : defenceUnits) {
+            unit.setTracking(false);
+        }
+        ((DefenceObserver)unitToEnable).setTracking(true);
     }
 
     @Override

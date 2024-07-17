@@ -6,8 +6,10 @@ package com.defence.maincontroller;
 
 import com.defence.utilities.DefenceObservableInterface;
 import com.defence.utilities.Strength;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,8 +26,11 @@ public class MainController extends JFrame implements MainControllerInterface {
      */
     public MainController(DefenceObservableInterface defenceObservableInterface) {
         initComponents();
+        setLocation(50, 0);
         setVisible(true);
         this.defenceObservableInterface = defenceObservableInterface;
+        ImageIcon windowIcon = new ImageIcon("src/com/defence/icons/defence.png");
+        setIconImage(windowIcon.getImage());
 
     }
 
@@ -34,11 +39,11 @@ public class MainController extends JFrame implements MainControllerInterface {
         recievedMsgDisplay.append(msg + "\n");
     }
 
-    public void addUnitsToComboList(JComboBox<String> comboBox) {
+    public void addUnitsToComboList(JComboBox<Object> comboBox) {
         int lastSelectedIndex = comboBox.getSelectedIndex();
         comboBox.removeAllItems();
-        String[] allUnits = defenceObservableInterface.getAllUnits();
-        for (String unit : allUnits) {
+        Object[] allUnits = defenceObservableInterface.getAllUnits();
+        for (Object unit : allUnits) {
             comboBox.addItem(unit);
         }
         comboBox.setSelectedIndex(lastSelectedIndex);
@@ -50,11 +55,12 @@ public class MainController extends JFrame implements MainControllerInterface {
     }
 
     private void updateSelectedUnitStatus() {
-        int indexOfSelectedUnit = unitTrackingComboBox.getSelectedIndex();
-        if (indexOfSelectedUnit != -1) {
-            currentlyTrackingUnitLabel.setText((String) unitTrackingComboBox.getSelectedItem());
-            String status = defenceObservableInterface.getStatusOfUnitInIndex(indexOfSelectedUnit);
-            unitStatusDisplay.setText(status);
+        Object selectedUnit = unitTrackingComboBox.getSelectedItem();
+        if (selectedUnit != null) {
+            currentlyTrackingUnitLabel.setText(selectedUnit.toString());
+            defenceObservableInterface.enableTrackingForUnit(selectedUnit);
+        } else {
+            JOptionPane.showMessageDialog(this, "Unit Not Selected", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -303,6 +309,11 @@ public class MainController extends JFrame implements MainControllerInterface {
 
         sendMsgPanel.setBackground(new java.awt.Color(204, 204, 204));
         sendMsgPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        sendMsgPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                sendMsgPanelMouseEntered(evt);
+            }
+        });
 
         sendMsgTitle.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
         sendMsgTitle.setText("Send to Units");
@@ -332,11 +343,6 @@ public class MainController extends JFrame implements MainControllerInterface {
         sendMsgToSelectedUnit.setFont(new java.awt.Font("Dubai", 1, 10)); // NOI18N
         sendMsgToSelectedUnit.setText("to a Selectecd Unit");
         sendMsgToSelectedUnit.setOpaque(true);
-        sendMsgToSelectedUnit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                sendMsgToSelectedUnitMouseClicked(evt);
-            }
-        });
         sendMsgToSelectedUnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sendMsgToSelectedUnitActionPerformed(evt);
@@ -440,20 +446,27 @@ public class MainController extends JFrame implements MainControllerInterface {
 
     private void sendMsgBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendMsgBtnActionPerformed
         // TODO add your handling code here:
-        if (sendMsgToAllUnits.isSelected()) {
-            if (!msgToSend.getText().equals("")) {
+        if (!msgToSend.getText().equals("")) {
+            if (sendMsgToAllUnits.isSelected()) {
                 defenceObservableInterface.sendMsgtoAllUnits("Main(Public) : " + msgToSend.getText());
                 msgToSend.setText("");
-            }
-        }
-        if (sendMsgToSelectedUnit.isSelected()) {
-            if (!msgToSend.getText().equals("")) {
-                int indexOfSelectedUnit = msgSendComboBox.getSelectedIndex();
-                defenceObservableInterface.sendMsgtoUnitInIndex(indexOfSelectedUnit, ("Main(Private) : " + msgToSend.getText()));
-                msgToSend.setText("");
-            }
-        }
 
+            } else if (sendMsgToSelectedUnit.isSelected()) {
+
+                Object selectedUnit = msgSendComboBox.getSelectedItem();
+                if (selectedUnit != null) {
+                    defenceObservableInterface.sendMsgtoUnit(selectedUnit, ("Main(Private) : " + msgToSend.getText()));
+                    msgToSend.setText("");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Unit Not Selected", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Option Not Selected", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }else{
+              JOptionPane.showMessageDialog(this, "Can not Send Empty Message", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_sendMsgBtnActionPerformed
 
     private void sendMsgToAllUnitsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendMsgToAllUnitsActionPerformed
@@ -482,11 +495,6 @@ public class MainController extends JFrame implements MainControllerInterface {
         addUnitsToComboList(unitTrackingComboBox);
     }//GEN-LAST:event_unitTrackingPanelMouseEntered
 
-    private void sendMsgToSelectedUnitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sendMsgToSelectedUnitMouseClicked
-        // TODO add your handling code here:
-        addUnitsToComboList(msgSendComboBox);
-    }//GEN-LAST:event_sendMsgToSelectedUnitMouseClicked
-
     private void warStrengthSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_warStrengthSliderStateChanged
         // TODO add your handling code here:
         int value = warStrengthSlider.getValue();
@@ -505,6 +513,11 @@ public class MainController extends JFrame implements MainControllerInterface {
         defenceObservableInterface.sendStrengthToUnits(strength);
     }//GEN-LAST:event_warStrengthSliderStateChanged
 
+    private void sendMsgPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sendMsgPanelMouseEntered
+        // TODO add your handling code here:
+        addUnitsToComboList(msgSendComboBox);
+    }//GEN-LAST:event_sendMsgPanelMouseEntered
+
     /**
      * @param args the command line arguments
      */
@@ -514,7 +527,7 @@ public class MainController extends JFrame implements MainControllerInterface {
     private javax.swing.JLabel currentlyTrackingUnitLabel;
     private javax.swing.JCheckBox isAreaCleared;
     private javax.swing.JLabel mainTitle;
-    private javax.swing.JComboBox<String> msgSendComboBox;
+    private javax.swing.JComboBox<Object> msgSendComboBox;
     private javax.swing.ButtonGroup msgSendOptionBtnGroup;
     private javax.swing.JTextArea msgToSend;
     private javax.swing.JTextArea recievedMsgDisplay;
@@ -530,11 +543,16 @@ public class MainController extends JFrame implements MainControllerInterface {
     private javax.swing.JTextArea unitStatusDisplay;
     private javax.swing.JScrollPane unitStatusScrollPane;
     private javax.swing.JButton unitTrackingBtn;
-    private javax.swing.JComboBox<String> unitTrackingComboBox;
+    private javax.swing.JComboBox<Object> unitTrackingComboBox;
     private javax.swing.JPanel unitTrackingPanel;
     private javax.swing.JLabel untiStatusTrackingTitle;
     private javax.swing.JPanel warStrengthPanel;
     private javax.swing.JSlider warStrengthSlider;
     private javax.swing.JLabel warStrengthTitle;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void sendStatusReport(String report) {
+        unitStatusDisplay.setText(report);
+    }
 }

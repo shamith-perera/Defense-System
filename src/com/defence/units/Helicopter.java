@@ -7,6 +7,7 @@ package com.defence.units;
 import com.defence.mainunit.SuperDefence;
 import javax.swing.JSpinner;
 import com.defence.maincontroller.MainController;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JSlider;
@@ -35,18 +36,19 @@ public class Helicopter extends SuperDefence {
         this.soldierCount = 5;
         this.missileCount = 20;
         this.fuelLevel = 100;
+        unitNameTitle.setIcon(new ImageIcon("src/com/defence/icons/heli.png"));
 
         ammoCountSpinner = new JSpinner();
         ammoCountSpinner.addChangeListener((javax.swing.event.ChangeEvent evt) -> {
             ammoCount = (int) ammoCountSpinner.getValue();
-            mainControllerInterface.reportStatusChange();
+            unitStatusChanged();
         });
         addSpinnerToSupplyStatusPanel(ammoCountSpinner, "Ammo Count", 100, 0, 100);
 
         missileCountSpinner = new JSpinner();
         missileCountSpinner.addChangeListener((javax.swing.event.ChangeEvent evt) -> {
             missileCount = (int) missileCountSpinner.getValue();
-            mainControllerInterface.reportStatusChange();
+            unitStatusChanged();
         });
         addSpinnerToSupplyStatusPanel(missileCountSpinner, "Missile Count", 20, 0, 20);
 
@@ -54,7 +56,7 @@ public class Helicopter extends SuperDefence {
 
         soldierCountSpinner.addChangeListener((javax.swing.event.ChangeEvent evt) -> {
             soldierCount = (int) soldierCountSpinner.getValue();
-            mainControllerInterface.reportStatusChange();
+            unitStatusChanged();
         });
         addSpinnerToSupplyStatusPanel(soldierCountSpinner, "Soldier Count", 5, 0, 5);
 
@@ -65,7 +67,7 @@ public class Helicopter extends SuperDefence {
                     ammoCount--;
                     int currentValue = (int) ammoCountSpinner.getValue();
                     ammoCountSpinner.setValue(--currentValue);
-                    mainControllerInterface.reportStatusChange();
+                    unitStatusChanged();
                 } else {
                     JOptionPane.showMessageDialog(this, "No Ammo !!! Refill to Shoot", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -80,7 +82,7 @@ public class Helicopter extends SuperDefence {
                     missileCount--;
                     int currentValue = (int) missileCountSpinner.getValue();
                     missileCountSpinner.setValue(--currentValue);
-                    mainControllerInterface.reportStatusChange();
+                    unitStatusChanged();
                 } else {
                     JOptionPane.showMessageDialog(this, "No Missile Ammo !!! Refill to Launch", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -97,9 +99,10 @@ public class Helicopter extends SuperDefence {
         fuelSlider = new JSlider();
         fuelSlider.addChangeListener((javax.swing.event.ChangeEvent e) -> {
             fuelLevel = fuelSlider.getValue();
-            mainControllerInterface.reportStatusChange();
+            unitStatusChanged();
         });
         addSliderToUnistStatusPanel(fuelSlider, "Fuel", 0, 100, 100);
+        setLocation(50, 400);
         setVisible(true);
     }
 
@@ -112,7 +115,7 @@ public class Helicopter extends SuperDefence {
     }
 
     @Override
-    public String getStatus() {
+    protected String generateStatusReport() {
         String status = "  Ammo\t : " + ammoCount + "\n";
         status += "  Missiles\t : " + missileCount + "\n";
         status += "  Soldiers\t : " + soldierCount + "\n\n";
@@ -142,5 +145,11 @@ public class Helicopter extends SuperDefence {
         missileShootBtn.setEnabled(false);
         laserBtn.setEnabled(false);
     }
+
+    
+
+    
+
+    
 
 }

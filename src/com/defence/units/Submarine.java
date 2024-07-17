@@ -6,6 +6,7 @@ package com.defence.units;
 
 import com.defence.mainunit.SuperDefence;
 import com.defence.maincontroller.MainController;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JSlider;
@@ -42,32 +43,33 @@ public class Submarine extends SuperDefence {
         this.tridentMissileCount = 10;
         this.fuelLevel = 100;
         this.oxygenLevel = 100;
+        unitNameTitle.setIcon(new ImageIcon("src/com/defence/icons/sub.png"));
 
         ammoCountSpinner = new JSpinner();
         ammoCountSpinner.addChangeListener((javax.swing.event.ChangeEvent evt) -> {
             ammoCount = (int) ammoCountSpinner.getValue();
-            mainControllerInterface.reportStatusChange();
+            unitStatusChanged();
         });
         addSpinnerToSupplyStatusPanel(ammoCountSpinner, "Ammo Count", 250, 0, 250);
 
         tomhawkmissileCountSpinner = new JSpinner();
         tomhawkmissileCountSpinner.addChangeListener((javax.swing.event.ChangeEvent evt) -> {
             tomhawkMissileCount = (int) tomhawkmissileCountSpinner.getValue();
-            mainControllerInterface.reportStatusChange();
+            unitStatusChanged();
         });
         addSpinnerToSupplyStatusPanel(tomhawkmissileCountSpinner, "Missile(Tomhawk) Count", 15, 0, 15);
 
         tridentmissileCountSpinner = new JSpinner();
         tridentmissileCountSpinner.addChangeListener((javax.swing.event.ChangeEvent evt) -> {
             tridentMissileCount = (int) tridentmissileCountSpinner.getValue();
-            mainControllerInterface.reportStatusChange();
+            unitStatusChanged();
         });
         addSpinnerToSupplyStatusPanel(tridentmissileCountSpinner, "Missile(Trident-2) Count", 10, 0, 10);
 
         soldierCountSpinner = new JSpinner();
         soldierCountSpinner.addChangeListener((javax.swing.event.ChangeEvent evt) -> {
             soldierCount = (int) soldierCountSpinner.getValue();
-            mainControllerInterface.reportStatusChange();
+            unitStatusChanged();
         });
         addSpinnerToSupplyStatusPanel(soldierCountSpinner, "Soldier Count", 10, 0, 10);
 
@@ -78,7 +80,7 @@ public class Submarine extends SuperDefence {
                     ammoCount--;
                     int currentValue = (int) ammoCountSpinner.getValue();
                     ammoCountSpinner.setValue(--currentValue);
-                    mainControllerInterface.reportStatusChange();
+                    unitStatusChanged();
                 } else {
                     JOptionPane.showMessageDialog(this, "No Ammo !!! Refill to Shoot", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -99,7 +101,7 @@ public class Submarine extends SuperDefence {
                     tomhawkMissileCount--;
                     int currentValue = (int) tomhawkmissileCountSpinner.getValue();
                     tomhawkmissileCountSpinner.setValue(--currentValue);
-                    mainControllerInterface.reportStatusChange();
+                   unitStatusChanged();
                 } else {
                     JOptionPane.showMessageDialog(this, "No Tomhawk(Missile) Ammo !!! Refill to Launch", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -114,7 +116,7 @@ public class Submarine extends SuperDefence {
                     tridentMissileCount--;
                     int currentValue = (int) tridentmissileCountSpinner.getValue();
                     tridentmissileCountSpinner.setValue(--currentValue);
-                    mainControllerInterface.reportStatusChange();
+                    unitStatusChanged();
                 } else {
                     JOptionPane.showMessageDialog(this, "No Trident(Missile) Ammo !!! Refill to Launch", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -125,16 +127,17 @@ public class Submarine extends SuperDefence {
         fuelSlider = new JSlider();
         fuelSlider.addChangeListener((javax.swing.event.ChangeEvent e) -> {
             fuelLevel = fuelSlider.getValue();
-            mainControllerInterface.reportStatusChange();
+            unitStatusChanged();
         });
         addSliderToUnistStatusPanel(fuelSlider, "Fuel", 0, 100, 100);
 
         oxygenSlider = new JSlider();
         oxygenSlider.addChangeListener((javax.swing.event.ChangeEvent e) -> {
             oxygenLevel = oxygenSlider.getValue();
-            mainControllerInterface.reportStatusChange();
+           unitStatusChanged();
         });
         addSliderToUnistStatusPanel(oxygenSlider, "Oxygen", 0, 100, 100);
+        setLocation(800, 400);
         setVisible(true);
     }
 
@@ -147,7 +150,7 @@ public class Submarine extends SuperDefence {
     }
 
     @Override
-    public String getStatus() {
+    protected String generateStatusReport() {
         String status = "  Ammo \t : " + ammoCount + "\n";
         status += "  Tomhawk M\t : " + tomhawkMissileCount + "\n";
         status += "  Trident M\t : " + tridentMissileCount + "\n";

@@ -8,8 +8,10 @@ import com.defence.maincontroller.MainControllerInterface;
 import com.defence.utilities.Strength;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.JSpinner;
@@ -24,6 +26,7 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
     protected boolean isPostioned;
     protected final MainControllerInterface mainControllerInterface;
     protected Strength warStrength;
+    protected boolean trackingEnabled;
 
     /**
      * Creates new form SuperDefnce
@@ -36,10 +39,17 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
         this.mainControllerInterface = mainControllerInterface;
         this.warStrength = Strength.CLOSED;
         this.isPostioned = false;
+        this.trackingEnabled = false;
         initComponents();
+        ImageIcon windowIcon = new ImageIcon("src/com/defence/icons/defence.png");
+        setIconImage(windowIcon.getImage());
         setTitle(unitName);
         unitNameTitle.setText(unitName);
         areaStatusLabel.setText("Not Cleared");
+    }
+    @Override
+    public String toString() {
+        return unitName;
     }
 
     @Override
@@ -65,10 +75,26 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
             unlockOperationsAccordingToStrength();
         }
     }
+    
+    @Override
+    public final void setTracking(boolean value){
+         trackingEnabled = value;
+         if(trackingEnabled){
+              mainControllerInterface.sendStatusReport(generateStatusReport());
+         }
+     }
 
     protected abstract void unlockOperationsAccordingToStrength();
 
     protected abstract void disableAllOperations();
+    
+    protected abstract String generateStatusReport();
+    
+    protected final void unitStatusChanged(){
+        if(trackingEnabled){
+            mainControllerInterface.sendStatusReport(generateStatusReport());
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -388,8 +414,10 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
         // TODO add your handling code here:
         if (!msgToSend.getText().equals("")) {
             mainControllerInterface.sendMsg(unitName + " : " + msgToSend.getText());
+            msgToSend.setText("");
+        }else{
+             JOptionPane.showMessageDialog(this, "Can not Send Empty Message", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        msgToSend.setText("");
     }//GEN-LAST:event_sendMsgBtnActionPerformed
 
     private void positionCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_positionCheckBoxActionPerformed
@@ -476,7 +504,7 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
     private javax.swing.JLabel suplyStatusTitle;
     private javax.swing.JPanel supplyStatusPanel;
     private javax.swing.JScrollPane supplyStatusScrollPane;
-    private javax.swing.JLabel unitNameTitle;
+    protected javax.swing.JLabel unitNameTitle;
     private javax.swing.JPanel unitStatusPanel;
     private javax.swing.JScrollPane unitStatusScrollPane;
     private javax.swing.JLabel unitStatusTitle;

@@ -19,8 +19,8 @@ public interface DefenceObserver {
     public void sendMsg(String msg);
 
     public String getName();
-    
+
     public void sendStrength(Strength strength);
-    
+
     public void setTracking(boolean value);
 }

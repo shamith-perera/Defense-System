@@ -125,31 +125,29 @@ public class Helicopter extends SuperDefence {
 
     @Override
     protected void unlockOperationsAccordingToStrength() {
-        disableAllOperations();
-        switch (warStrength) {
-            case STRONG:
-                laserBtn.setEnabled(true);
-            case HIGH:
-            case MEDIUM:
-                missileShootBtn.setEnabled(true);
-            case LOW:
-                shootBtn.setEnabled(true);
 
+        if (isPostioned) {
+            disableAllOperations();
+            switch (warStrength) {
+                case STRONG:
+                    laserBtn.setEnabled(true);
+                case HIGH:
+                case MEDIUM:
+                    missileShootBtn.setEnabled(true);
+                case LOW:
+                    shootBtn.setEnabled(true);
+
+            }
+        } else {
+            disableAllOperations();
         }
 
     }
 
-    @Override
     protected void disableAllOperations() {
         shootBtn.setEnabled(false);
         missileShootBtn.setEnabled(false);
         laserBtn.setEnabled(false);
     }
-
-    
-
-    
-
-    
 
 }

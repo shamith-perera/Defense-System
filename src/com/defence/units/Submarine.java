@@ -101,7 +101,7 @@ public class Submarine extends SuperDefence {
                     tomhawkMissileCount--;
                     int currentValue = (int) tomhawkmissileCountSpinner.getValue();
                     tomhawkmissileCountSpinner.setValue(--currentValue);
-                   unitStatusChanged();
+                    unitStatusChanged();
                 } else {
                     JOptionPane.showMessageDialog(this, "No Tomhawk(Missile) Ammo !!! Refill to Launch", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -134,7 +134,7 @@ public class Submarine extends SuperDefence {
         oxygenSlider = new JSlider();
         oxygenSlider.addChangeListener((javax.swing.event.ChangeEvent e) -> {
             oxygenLevel = oxygenSlider.getValue();
-           unitStatusChanged();
+            unitStatusChanged();
         });
         addSliderToUnistStatusPanel(oxygenSlider, "Oxygen", 0, 100, 100);
         setLocation(800, 400);
@@ -155,29 +155,33 @@ public class Submarine extends SuperDefence {
         status += "  Tomhawk M\t : " + tomhawkMissileCount + "\n";
         status += "  Trident M\t : " + tridentMissileCount + "\n";
         status += "  Soldiers\t : " + soldierCount + "\n\n";
-        status += "  Oxygen Level\t : " + oxygenLevel + "\n";
+        status += "  Oxygen\t : " + oxygenLevel + "\n";
         status += "  Fuel Level\t : " + fuelLevel;
         return status;
     }
 
     @Override
     protected void unlockOperationsAccordingToStrength() {
-        disableAllOperations();
-        switch (warStrength) {
-            case STRONG:
-                tridentmissileBtn.setEnabled(true);
-            case HIGH:
-                tomhawkMissileBtn.setEnabled(true);
-            case MEDIUM:
-                sonarOperationBtn.setEnabled(true);
-            case LOW:
-                shootBtn.setEnabled(true);
 
+        if (isPostioned) {
+            disableAllOperations();
+            switch (warStrength) {
+                case STRONG:
+                    tridentmissileBtn.setEnabled(true);
+                case HIGH:
+                    tomhawkMissileBtn.setEnabled(true);
+                case MEDIUM:
+                    sonarOperationBtn.setEnabled(true);
+                case LOW:
+                    shootBtn.setEnabled(true);
+
+            }
+        } else {
+            disableAllOperations();
         }
 
     }
 
-    @Override
     protected void disableAllOperations() {
         shootBtn.setEnabled(false);
         sonarOperationBtn.setEnabled(false);

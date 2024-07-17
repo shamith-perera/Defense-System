@@ -39,7 +39,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="mainTitle" min="-2" pref="136" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="areaStatusPanel" min="-2" pref="96" max="-2" attributes="0"/>
+                      <Component id="areaStatusPanel" min="-2" pref="107" max="-2" attributes="0"/>
                   </Group>
                   <Component id="unitTrackingPanel" max="32767" attributes="0"/>
               </Group>
@@ -70,8 +70,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="warStrengthPanel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="unitTrackingPanel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="unitTrackingPanel" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
@@ -119,7 +118,7 @@
               <Color blue="cc" green="cc" red="cc" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dubai" size="10" style="1"/>
+              <Font name="Arial Narrow" size="12" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Area Cleared"/>
             <Property name="opaque" type="boolean" value="true"/>
@@ -174,7 +173,7 @@
         <Component class="javax.swing.JLabel" name="recievedMsgTitle">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Calibri" size="14" style="1"/>
+              <Font name="Arial Narrow" size="18" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Unit Messages"/>
@@ -191,11 +190,11 @@
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="cc" type="rgb"/>
+                  <Color blue="cc" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Calibri" size="12" style="1"/>
+                  <Font name="Arial Narrow" size="14" style="1"/>
                 </Property>
                 <Property name="lineWrap" type="boolean" value="true"/>
                 <Property name="rows" type="int" value="5"/>
@@ -224,33 +223,32 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                           <Component id="untiStatusTrackingTitle" min="-2" pref="118" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                          <Component id="unitStatusScrollPane" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                                  <Component id="currentTrackingUnitTitle" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="currentlyTrackingUnitLabel" min="-2" pref="88" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="unitTrackingComboBox" min="-2" pref="128" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="unitTrackingBtn" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="unitStatusScrollPane" min="-2" pref="207" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                      <Component id="currentTrackingUnitTitle" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="currentlyTrackingUnitLabel" min="-2" pref="88" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="unitTrackingComboBox" min="-2" pref="128" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="unitTrackingBtn" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="12" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -265,9 +263,9 @@
                       <Component id="unitTrackingBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="currentTrackingUnitTitle" min="-2" pref="16" max="-2" attributes="0"/>
-                      <Component id="currentlyTrackingUnitLabel" min="-2" pref="14" max="-2" attributes="0"/>
+                      <Component id="currentlyTrackingUnitLabel" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="unitStatusScrollPane" min="-2" pref="136" max="-2" attributes="0"/>
@@ -288,13 +286,19 @@
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="cc" type="rgb"/>
+                  <Color blue="cc" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Dubai" size="10" style="1"/>
+                  <Font name="Arial Narrow" size="12" style="1"/>
                 </Property>
                 <Property name="rows" type="int" value="5"/>
+                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[192, 79]"/>
+                </Property>
+                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[192, 79]"/>
+                </Property>
               </Properties>
             </Component>
           </SubComponents>
@@ -302,7 +306,7 @@
         <Component class="javax.swing.JLabel" name="currentTrackingUnitTitle">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dubai" size="12" style="1"/>
+              <Font name="Arial Narrow" size="14" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Currently Tracking :  "/>
           </Properties>
@@ -313,7 +317,7 @@
               <Color blue="33" green="66" red="0" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dubai" size="12" style="1"/>
+              <Font name="Arial Narrow" size="14" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -325,7 +329,7 @@
         <Component class="javax.swing.JComboBox" name="unitTrackingComboBox">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dubai" size="10" style="1"/>
+              <Font name="Arial Narrow" size="12" style="1"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
@@ -341,7 +345,7 @@
               <Color blue="99" green="cc" red="0" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dubai" size="10" style="1"/>
+              <Font name="Arial Narrow" size="12" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Track Status"/>
           </Properties>
@@ -352,7 +356,7 @@
         <Component class="javax.swing.JLabel" name="untiStatusTrackingTitle">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dubai" size="12" style="1"/>
+              <Font name="Arial Narrow" size="14" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Unit Status Tracking"/>
@@ -392,23 +396,26 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                  <Component id="warStrengthTitle" min="-2" pref="121" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="warStrengthSlider" min="-2" pref="208" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                          <Component id="warStrengthTitle" min="-2" pref="121" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                          <Component id="warStrengthSlider" min="-2" pref="219" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace pref="23" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="warStrengthTitle" min="-2" max="-2" attributes="0"/>
+                  <Component id="warStrengthTitle" min="-2" pref="12" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="warStrengthSlider" min="-2" pref="33" max="-2" attributes="0"/>
+                  <Component id="warStrengthSlider" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="8" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -418,7 +425,7 @@
         <Component class="javax.swing.JLabel" name="warStrengthTitle">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dubai" size="12" style="1"/>
+              <Font name="Arial Narrow" size="12" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="War Strength"/>
@@ -430,7 +437,7 @@
               <Color blue="cc" green="cc" red="cc" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dubai" size="10" style="1"/>
+              <Font name="Arial Narrow" size="12" style="1"/>
             </Property>
             <Property name="majorTickSpacing" type="int" value="10"/>
             <Property name="minorTickSpacing" type="int" value="5"/>
@@ -507,7 +514,7 @@
                       <Component id="sendMsgToSelectedUnit" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="sendMsgScrollPane" max="32767" attributes="0"/>
+                  <Component id="sendMsgScrollPane" pref="121" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -517,7 +524,7 @@
         <Component class="javax.swing.JLabel" name="sendMsgTitle">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dubai" size="14" style="1"/>
+              <Font name="Arial Narrow" size="14" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Send to Units"/>
           </Properties>
@@ -528,7 +535,7 @@
               <Color blue="33" green="cc" red="ff" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dubai" size="12" style="1"/>
+              <Font name="Arial Narrow" size="14" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="send"/>
           </Properties>
@@ -545,7 +552,7 @@
               <ComponentRef name="msgSendOptionBtnGroup"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dubai" size="10" style="1"/>
+              <Font name="Arial Narrow" size="12" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="to All Units"/>
             <Property name="opaque" type="boolean" value="true"/>
@@ -563,7 +570,7 @@
               <ComponentRef name="msgSendOptionBtnGroup"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dubai" size="10" style="1"/>
+              <Font name="Arial Narrow" size="12" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="to a Selectecd Unit"/>
             <Property name="opaque" type="boolean" value="true"/>
@@ -575,7 +582,7 @@
         <Component class="javax.swing.JComboBox" name="msgSendComboBox">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dubai" size="10" style="1"/>
+              <Font name="Arial Narrow" size="12" style="1"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
@@ -598,7 +605,7 @@
               <Properties>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Dubai" size="10" style="1"/>
+                  <Font name="Arial Narrow" size="14" style="1"/>
                 </Property>
                 <Property name="lineWrap" type="boolean" value="true"/>
                 <Property name="rows" type="int" value="5"/>

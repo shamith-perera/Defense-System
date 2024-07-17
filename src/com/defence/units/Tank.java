@@ -83,7 +83,7 @@ public class Tank extends SuperDefence {
                     missileCount--;
                     int currentValue = (int) missileCountSpinner.getValue();
                     missileCountSpinner.setValue(--currentValue);
-                  unitStatusChanged();
+                    unitStatusChanged();
                 } else {
                     JOptionPane.showMessageDialog(this, "No Ammo !!! Refill to Shoot", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -142,22 +142,26 @@ public class Tank extends SuperDefence {
 
     @Override
     protected void unlockOperationsAccordingToStrength() {
-        disableAllOperations();
-        switch (warStrength) {
-            case STRONG:
-                rotateShootBtn.setEnabled(true);
-            case HIGH:
-                radarBtn.setEnabled(true);
-            case MEDIUM:
-                missileShootBtn.setEnabled(true);
-            case LOW:
-                shootBtn.setEnabled(true);
 
+        if (isPostioned) {
+            disableAllOperations();
+            switch (warStrength) {
+                case STRONG:
+                    rotateShootBtn.setEnabled(true);
+                case HIGH:
+                    radarBtn.setEnabled(true);
+                case MEDIUM:
+                    missileShootBtn.setEnabled(true);
+                case LOW:
+                    shootBtn.setEnabled(true);
+
+            }
+        } else {
+            disableAllOperations();
         }
 
     }
 
-    @Override
     protected void disableAllOperations() {
         shootBtn.setEnabled(false);
         missileShootBtn.setEnabled(false);

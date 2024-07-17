@@ -4,8 +4,6 @@
  */
 package com.defence.utilities;
 
-
-
 /**
  *
  * @author shami
@@ -23,6 +21,5 @@ public interface DefenceObservableInterface {
     public void enableTrackingForUnit(Object unit);
 
     public void sendStrengthToUnits(Strength strength);
-    
-    
+
 }

@@ -48,7 +48,7 @@ public class DefenceObservable implements DefenceObservableInterface {
 
     @Override
     public void sendMsgtoUnit(Object unit, String msg) {
-       ((DefenceObserver)unit).sendMsg(msg);
+        ((DefenceObserver) unit).sendMsg(msg);
 
     }
 
@@ -57,7 +57,7 @@ public class DefenceObservable implements DefenceObservableInterface {
         for (DefenceObserver unit : defenceUnits) {
             unit.setTracking(false);
         }
-        ((DefenceObserver)unitToEnable).setTracking(true);
+        ((DefenceObserver) unitToEnable).setTracking(true);
     }
 
     @Override

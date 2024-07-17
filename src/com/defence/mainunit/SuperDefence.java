@@ -47,6 +47,7 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
         unitNameTitle.setText(unitName);
         areaStatusLabel.setText("Not Cleared");
     }
+
     @Override
     public String toString() {
         return unitName;
@@ -69,29 +70,25 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
 
     @Override
     public final void sendStrength(Strength strength) {
-
         this.warStrength = strength;
-        if (isPostioned) {
-            unlockOperationsAccordingToStrength();
+        unlockOperationsAccordingToStrength();
+
+    }
+
+    @Override
+    public final void setTracking(boolean value) {
+        trackingEnabled = value;
+        if (trackingEnabled) {
+            mainControllerInterface.sendStatusReport(generateStatusReport());
         }
     }
-    
-    @Override
-    public final void setTracking(boolean value){
-         trackingEnabled = value;
-         if(trackingEnabled){
-              mainControllerInterface.sendStatusReport(generateStatusReport());
-         }
-     }
 
     protected abstract void unlockOperationsAccordingToStrength();
 
-    protected abstract void disableAllOperations();
-    
     protected abstract String generateStatusReport();
-    
-    protected final void unitStatusChanged(){
-        if(trackingEnabled){
+
+    protected final void unitStatusChanged() {
+        if (trackingEnabled) {
             mainControllerInterface.sendStatusReport(generateStatusReport());
         }
     }
@@ -135,7 +132,7 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
         setResizable(false);
 
         unitNameTitle.setBackground(new java.awt.Color(0, 204, 153));
-        unitNameTitle.setFont(new java.awt.Font("Calibri", 1, 20)); // NOI18N
+        unitNameTitle.setFont(new java.awt.Font("Arial Narrow", 1, 20)); // NOI18N
         unitNameTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         unitNameTitle.setText("Unit Name");
         unitNameTitle.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
@@ -157,13 +154,13 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
         areaStatusPanel.setPreferredSize(new java.awt.Dimension(191, 45));
 
         areaStatusTitle.setBackground(new java.awt.Color(110, 161, 113));
-        areaStatusTitle.setFont(new java.awt.Font("Calibri", 1, 10)); // NOI18N
+        areaStatusTitle.setFont(new java.awt.Font("Arial Narrow", 1, 12)); // NOI18N
         areaStatusTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         areaStatusTitle.setText("Area Status");
         areaStatusTitle.setPreferredSize(new java.awt.Dimension(75, 25));
 
         areaStatusLabel.setBackground(new java.awt.Color(204, 0, 0));
-        areaStatusLabel.setFont(new java.awt.Font("Calibri", 1, 10)); // NOI18N
+        areaStatusLabel.setFont(new java.awt.Font("Arial Narrow", 1, 12)); // NOI18N
         areaStatusLabel.setForeground(new java.awt.Color(255, 255, 255));
         areaStatusLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         areaStatusLabel.setOpaque(true);
@@ -174,7 +171,7 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
             areaStatusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(areaStatusPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(areaStatusTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(areaStatusTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(areaStatusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
@@ -182,25 +179,23 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
         areaStatusPanelLayout.setVerticalGroup(
             areaStatusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(areaStatusPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(areaStatusTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(areaStatusPanelLayout.createSequentialGroup()
-                .addComponent(areaStatusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(areaStatusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(areaStatusTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(areaStatusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 5, Short.MAX_VALUE))
         );
 
         sendMessagePanel.setBackground(new java.awt.Color(204, 204, 204));
         sendMessagePanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
 
         msgToSend.setColumns(20);
-        msgToSend.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        msgToSend.setFont(new java.awt.Font("Arial Narrow", 1, 14)); // NOI18N
         msgToSend.setLineWrap(true);
         msgToSend.setRows(5);
         msgSendScrollPane.setViewportView(msgToSend);
 
         sendMsgBtn.setBackground(new java.awt.Color(255, 255, 204));
-        sendMsgBtn.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        sendMsgBtn.setFont(new java.awt.Font("Arial Narrow", 1, 14)); // NOI18N
         sendMsgBtn.setText("Send");
         sendMsgBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -208,7 +203,7 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
             }
         });
 
-        sendMsgTitle.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        sendMsgTitle.setFont(new java.awt.Font("Arial Narrow", 1, 14)); // NOI18N
         sendMsgTitle.setText("Send to Main Controller");
 
         javax.swing.GroupLayout sendMessagePanelLayout = new javax.swing.GroupLayout(sendMessagePanel);
@@ -218,12 +213,12 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
             .addGroup(sendMessagePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(sendMessagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(msgSendScrollPane)
                     .addGroup(sendMessagePanelLayout.createSequentialGroup()
                         .addComponent(sendMsgTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(sendMsgBtn)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 34, Short.MAX_VALUE))
+                    .addComponent(msgSendScrollPane, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         sendMessagePanelLayout.setVerticalGroup(
@@ -235,9 +230,9 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
                     .addGroup(sendMessagePanelLayout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addComponent(sendMsgTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(msgSendScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         recievedMsgPanel.setBackground(new java.awt.Color(204, 204, 204));
@@ -246,12 +241,12 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
         recievedMsgDisplay.setEditable(false);
         recievedMsgDisplay.setBackground(new java.awt.Color(204, 255, 255));
         recievedMsgDisplay.setColumns(20);
-        recievedMsgDisplay.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        recievedMsgDisplay.setFont(new java.awt.Font("Arial Narrow", 1, 14)); // NOI18N
         recievedMsgDisplay.setLineWrap(true);
         recievedMsgDisplay.setRows(5);
         recievedMsgScrollPane.setViewportView(recievedMsgDisplay);
 
-        recMsgTitle.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        recMsgTitle.setFont(new java.awt.Font("Arial Narrow", 1, 14)); // NOI18N
         recMsgTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         recMsgTitle.setText("Main Controller Messages");
 
@@ -272,7 +267,7 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
                 .addContainerGap()
                 .addComponent(recMsgTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(recievedMsgScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+                .addComponent(recievedMsgScrollPane)
                 .addContainerGap())
         );
 
@@ -280,7 +275,7 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
         positionPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
 
         positionCheckBox.setBackground(new java.awt.Color(204, 204, 204));
-        positionCheckBox.setFont(new java.awt.Font("Consolas", 1, 10)); // NOI18N
+        positionCheckBox.setFont(new java.awt.Font("Arial Narrow", 1, 12)); // NOI18N
         positionCheckBox.setText("Postion");
         positionCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -305,13 +300,13 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
         );
 
         suplyStatusTitle.setBackground(new java.awt.Color(110, 161, 113));
-        suplyStatusTitle.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        suplyStatusTitle.setFont(new java.awt.Font("Arial Narrow", 1, 14)); // NOI18N
         suplyStatusTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         suplyStatusTitle.setText("Supply Status");
         suplyStatusTitle.setPreferredSize(new java.awt.Dimension(102, 25));
 
         operationsTitle.setBackground(new java.awt.Color(110, 161, 113));
-        operationsTitle.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        operationsTitle.setFont(new java.awt.Font("Arial Narrow", 1, 14)); // NOI18N
         operationsTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         operationsTitle.setText("Operations");
         operationsTitle.setPreferredSize(new java.awt.Dimension(102, 25));
@@ -327,14 +322,14 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
         operationsScrollPane.setViewportView(operationsBtnPanel);
 
         unitStatusTitle.setBackground(new java.awt.Color(110, 161, 113));
-        unitStatusTitle.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        unitStatusTitle.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
         unitStatusTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         unitStatusTitle.setText("Unit Status");
         unitStatusTitle.setPreferredSize(new java.awt.Dimension(250, 35));
 
         unitStatusScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 
-        unitStatusPanel.setBackground(new java.awt.Color(204, 204, 204));
+        unitStatusPanel.setBackground(new java.awt.Color(235, 235, 235));
         unitStatusPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
         unitStatusScrollPane.setViewportView(unitStatusPanel);
 
@@ -359,12 +354,10 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
                                 .addComponent(suplyStatusTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(36, 36, 36)
-                                        .addComponent(operationsTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(63, 63, 63))
-                                    .addComponent(operationsScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(operationsScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(42, 42, 42)
+                                .addComponent(operationsTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(sendMessagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -381,9 +374,11 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(suplyStatusTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(unitStatusTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(unitStatusTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addComponent(suplyStatusTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -394,15 +389,15 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
                                 .addComponent(operationsScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(unitStatusScrollPane)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 3, Short.MAX_VALUE)
+                        .addGap(0, 2, Short.MAX_VALUE)
                         .addComponent(unitNameTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(areaStatusPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(positionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sendMessagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(7, 7, 7)
+                        .addComponent(sendMessagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(recievedMsgPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -415,8 +410,8 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
         if (!msgToSend.getText().equals("")) {
             mainControllerInterface.sendMsg(unitName + " : " + msgToSend.getText());
             msgToSend.setText("");
-        }else{
-             JOptionPane.showMessageDialog(this, "Can not Send Empty Message", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Can not Send Empty Message", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_sendMsgBtnActionPerformed
 
@@ -424,21 +419,18 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
         // TODO add your handling code here:
         isPostioned = positionCheckBox.isSelected();
         mainControllerInterface.sendMsg(unitName + " : " + (isPostioned ? "Positioned" : "Left Position"));
-        if (isPostioned) {
-            unlockOperationsAccordingToStrength();
-        } else {
-            disableAllOperations();
-        }
+        unlockOperationsAccordingToStrength();
+
     }//GEN-LAST:event_positionCheckBoxActionPerformed
 
     public final void addSpinnerToSupplyStatusPanel(JSpinner spinner, String Label, int max, int min, int defaultVal) {
-        spinner.setFont(new java.awt.Font("Calibri", 1, 12));
+        spinner.setFont(new java.awt.Font("Arial Narrow", 1, 12));
         spinner.setModel(new javax.swing.SpinnerNumberModel(defaultVal, min, max, 1));
         spinner.setPreferredSize(new java.awt.Dimension(40, 22));
         ((JSpinner.DefaultEditor) spinner.getEditor()).getTextField().setEditable(false);
 
         JLabel spinnerLabel = new JLabel();
-        spinnerLabel.setFont(new java.awt.Font("Calibri", 1, 12));
+        spinnerLabel.setFont(new java.awt.Font("Arial Narrow", 1, 12));
         spinnerLabel.setText(Label);
 
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -448,7 +440,7 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
     }
 
     public final void addButtonToOperationsPanel(JButton button) {
-        button.setFont(new java.awt.Font("Calibri", 1, 12));
+        button.setFont(new java.awt.Font("Arial Narrow", 1, 12));
         button.setPreferredSize(new java.awt.Dimension(175, 25));
         button.setBackground(new java.awt.Color(0, 204, 204));
         button.setEnabled(false);
@@ -458,7 +450,7 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
     }
 
     public final void addSliderToUnistStatusPanel(JSlider slider, String label, int min, int max, int defVal) {
-        slider.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+        slider.setFont(new java.awt.Font("Arial Narrow", 0, 12)); // NOI18N
         slider.setMajorTickSpacing(10);
         slider.setMinorTickSpacing(2);
         slider.setOrientation(javax.swing.JSlider.VERTICAL);
@@ -471,13 +463,13 @@ public abstract class SuperDefence extends javax.swing.JFrame implements com.def
         slider.setMaximum(max);
         slider.setMinimum(min);
         JLabel sliderLabel = new JLabel(label);
-        sliderLabel.setFont(new java.awt.Font("Calibri", 1, 12));
+        sliderLabel.setFont(new java.awt.Font("Arial Narrow", 1, 12));
         sliderLabel.setOpaque(false);
         sliderLabel.setHorizontalAlignment(JLabel.CENTER);
         JPanel panel = new JPanel(new BorderLayout());
         panel.add("North", slider);
         panel.add("South", sliderLabel);
-        panel.setBackground(new java.awt.Color(204, 204, 204));
+        panel.setBackground(new java.awt.Color(235, 235, 235));
         panel.setPreferredSize(new java.awt.Dimension(76, 300));
         unitStatusPanel.add(panel);
     }

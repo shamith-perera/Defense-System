@@ -110,7 +110,7 @@ public class MainController extends JFrame implements MainControllerInterface {
         areaStatusPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
 
         isAreaCleared.setBackground(new java.awt.Color(204, 204, 204));
-        isAreaCleared.setFont(new java.awt.Font("Dubai", 1, 10)); // NOI18N
+        isAreaCleared.setFont(new java.awt.Font("Arial Narrow", 1, 12)); // NOI18N
         isAreaCleared.setText("Area Cleared");
         isAreaCleared.setOpaque(true);
         isAreaCleared.addActionListener(new java.awt.event.ActionListener() {
@@ -139,14 +139,14 @@ public class MainController extends JFrame implements MainControllerInterface {
         recievedMsgPanel.setBackground(new java.awt.Color(204, 204, 204));
         recievedMsgPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
 
-        recievedMsgTitle.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        recievedMsgTitle.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
         recievedMsgTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         recievedMsgTitle.setText("Unit Messages");
 
         recievedMsgDisplay.setEditable(false);
-        recievedMsgDisplay.setBackground(new java.awt.Color(204, 255, 255));
+        recievedMsgDisplay.setBackground(new java.awt.Color(255, 255, 204));
         recievedMsgDisplay.setColumns(20);
-        recievedMsgDisplay.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        recievedMsgDisplay.setFont(new java.awt.Font("Arial Narrow", 1, 14)); // NOI18N
         recievedMsgDisplay.setLineWrap(true);
         recievedMsgDisplay.setRows(5);
         recievedMsgScrollPane.setViewportView(recievedMsgDisplay);
@@ -183,25 +183,27 @@ public class MainController extends JFrame implements MainControllerInterface {
         });
 
         unitStatusDisplay.setEditable(false);
-        unitStatusDisplay.setBackground(new java.awt.Color(204, 255, 255));
+        unitStatusDisplay.setBackground(new java.awt.Color(255, 255, 204));
         unitStatusDisplay.setColumns(20);
-        unitStatusDisplay.setFont(new java.awt.Font("Dubai", 1, 10)); // NOI18N
+        unitStatusDisplay.setFont(new java.awt.Font("Arial Narrow", 1, 12)); // NOI18N
         unitStatusDisplay.setRows(5);
+        unitStatusDisplay.setMaximumSize(new java.awt.Dimension(192, 79));
+        unitStatusDisplay.setMinimumSize(new java.awt.Dimension(192, 79));
         unitStatusScrollPane.setViewportView(unitStatusDisplay);
 
-        currentTrackingUnitTitle.setFont(new java.awt.Font("Dubai", 1, 12)); // NOI18N
+        currentTrackingUnitTitle.setFont(new java.awt.Font("Arial Narrow", 1, 14)); // NOI18N
         currentTrackingUnitTitle.setText("Currently Tracking :  ");
 
         currentlyTrackingUnitLabel.setBackground(new java.awt.Color(0, 102, 51));
-        currentlyTrackingUnitLabel.setFont(new java.awt.Font("Dubai", 1, 12)); // NOI18N
+        currentlyTrackingUnitLabel.setFont(new java.awt.Font("Arial Narrow", 1, 14)); // NOI18N
         currentlyTrackingUnitLabel.setForeground(new java.awt.Color(255, 255, 255));
         currentlyTrackingUnitLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         currentlyTrackingUnitLabel.setOpaque(true);
 
-        unitTrackingComboBox.setFont(new java.awt.Font("Dubai", 1, 10)); // NOI18N
+        unitTrackingComboBox.setFont(new java.awt.Font("Arial Narrow", 1, 12)); // NOI18N
 
         unitTrackingBtn.setBackground(new java.awt.Color(0, 204, 153));
-        unitTrackingBtn.setFont(new java.awt.Font("Dubai", 1, 10)); // NOI18N
+        unitTrackingBtn.setFont(new java.awt.Font("Arial Narrow", 1, 12)); // NOI18N
         unitTrackingBtn.setText("Track Status");
         unitTrackingBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -209,7 +211,7 @@ public class MainController extends JFrame implements MainControllerInterface {
             }
         });
 
-        untiStatusTrackingTitle.setFont(new java.awt.Font("Dubai", 1, 12)); // NOI18N
+        untiStatusTrackingTitle.setFont(new java.awt.Font("Arial Narrow", 1, 14)); // NOI18N
         untiStatusTrackingTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         untiStatusTrackingTitle.setText("Unit Status Tracking");
 
@@ -218,26 +220,25 @@ public class MainController extends JFrame implements MainControllerInterface {
         unitTrackingPanelLayout.setHorizontalGroup(
             unitTrackingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(unitTrackingPanelLayout.createSequentialGroup()
-                .addGroup(unitTrackingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(unitTrackingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(unitTrackingPanelLayout.createSequentialGroup()
                         .addGap(60, 60, 60)
                         .addComponent(untiStatusTrackingTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(unitTrackingPanelLayout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(unitStatusScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(unitTrackingPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(unitTrackingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(unitTrackingPanelLayout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(currentTrackingUnitTitle)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(currentlyTrackingUnitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(unitTrackingPanelLayout.createSequentialGroup()
-                                .addComponent(unitTrackingComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(unitTrackingBtn)))))
-                .addContainerGap(12, Short.MAX_VALUE))
+                        .addGroup(unitTrackingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(unitStatusScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(unitTrackingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(unitTrackingPanelLayout.createSequentialGroup()
+                                    .addGap(6, 6, 6)
+                                    .addComponent(currentTrackingUnitTitle)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(currentlyTrackingUnitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(unitTrackingPanelLayout.createSequentialGroup()
+                                    .addComponent(unitTrackingComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(unitTrackingBtn))))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         unitTrackingPanelLayout.setVerticalGroup(
             unitTrackingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,9 +250,9 @@ public class MainController extends JFrame implements MainControllerInterface {
                     .addComponent(unitTrackingComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(unitTrackingBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(unitTrackingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(unitTrackingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(currentTrackingUnitTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(currentlyTrackingUnitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(currentlyTrackingUnitLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(unitStatusScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(8, 8, 8))
@@ -267,12 +268,12 @@ public class MainController extends JFrame implements MainControllerInterface {
         warStrengthPanel.setBackground(new java.awt.Color(204, 204, 204));
         warStrengthPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
 
-        warStrengthTitle.setFont(new java.awt.Font("Dubai", 1, 12)); // NOI18N
+        warStrengthTitle.setFont(new java.awt.Font("Arial Narrow", 1, 12)); // NOI18N
         warStrengthTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         warStrengthTitle.setText("War Strength");
 
         warStrengthSlider.setBackground(new java.awt.Color(204, 204, 204));
-        warStrengthSlider.setFont(new java.awt.Font("Dubai", 1, 10)); // NOI18N
+        warStrengthSlider.setFont(new java.awt.Font("Arial Narrow", 1, 12)); // NOI18N
         warStrengthSlider.setMajorTickSpacing(10);
         warStrengthSlider.setMinorTickSpacing(5);
         warStrengthSlider.setPaintLabels(true);
@@ -290,20 +291,21 @@ public class MainController extends JFrame implements MainControllerInterface {
         warStrengthPanelLayout.setHorizontalGroup(
             warStrengthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(warStrengthPanelLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(warStrengthTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, warStrengthPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(warStrengthSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(warStrengthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(warStrengthPanelLayout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(warStrengthTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(warStrengthPanelLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(warStrengthSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         warStrengthPanelLayout.setVerticalGroup(
             warStrengthPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(warStrengthPanelLayout.createSequentialGroup()
-                .addComponent(warStrengthTitle)
+                .addComponent(warStrengthTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(warStrengthSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(warStrengthSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 8, Short.MAX_VALUE))
         );
 
@@ -315,11 +317,11 @@ public class MainController extends JFrame implements MainControllerInterface {
             }
         });
 
-        sendMsgTitle.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
+        sendMsgTitle.setFont(new java.awt.Font("Arial Narrow", 1, 14)); // NOI18N
         sendMsgTitle.setText("Send to Units");
 
         sendMsgBtn.setBackground(new java.awt.Color(255, 204, 51));
-        sendMsgBtn.setFont(new java.awt.Font("Dubai", 1, 12)); // NOI18N
+        sendMsgBtn.setFont(new java.awt.Font("Arial Narrow", 1, 14)); // NOI18N
         sendMsgBtn.setText("send");
         sendMsgBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -329,7 +331,7 @@ public class MainController extends JFrame implements MainControllerInterface {
 
         sendMsgToAllUnits.setBackground(new java.awt.Color(204, 204, 204));
         msgSendOptionBtnGroup.add(sendMsgToAllUnits);
-        sendMsgToAllUnits.setFont(new java.awt.Font("Dubai", 1, 10)); // NOI18N
+        sendMsgToAllUnits.setFont(new java.awt.Font("Arial Narrow", 1, 12)); // NOI18N
         sendMsgToAllUnits.setText("to All Units");
         sendMsgToAllUnits.setOpaque(true);
         sendMsgToAllUnits.addActionListener(new java.awt.event.ActionListener() {
@@ -340,7 +342,7 @@ public class MainController extends JFrame implements MainControllerInterface {
 
         sendMsgToSelectedUnit.setBackground(new java.awt.Color(204, 204, 204));
         msgSendOptionBtnGroup.add(sendMsgToSelectedUnit);
-        sendMsgToSelectedUnit.setFont(new java.awt.Font("Dubai", 1, 10)); // NOI18N
+        sendMsgToSelectedUnit.setFont(new java.awt.Font("Arial Narrow", 1, 12)); // NOI18N
         sendMsgToSelectedUnit.setText("to a Selectecd Unit");
         sendMsgToSelectedUnit.setOpaque(true);
         sendMsgToSelectedUnit.addActionListener(new java.awt.event.ActionListener() {
@@ -349,12 +351,12 @@ public class MainController extends JFrame implements MainControllerInterface {
             }
         });
 
-        msgSendComboBox.setFont(new java.awt.Font("Dubai", 1, 10)); // NOI18N
+        msgSendComboBox.setFont(new java.awt.Font("Arial Narrow", 1, 12)); // NOI18N
         msgSendComboBox.setToolTipText("Select a Unit");
         msgSendComboBox.setEnabled(false);
 
         msgToSend.setColumns(20);
-        msgToSend.setFont(new java.awt.Font("Dubai", 1, 10)); // NOI18N
+        msgToSend.setFont(new java.awt.Font("Arial Narrow", 1, 14)); // NOI18N
         msgToSend.setLineWrap(true);
         msgToSend.setRows(5);
         sendMsgScrollPane.setViewportView(msgToSend);
@@ -397,7 +399,7 @@ public class MainController extends JFrame implements MainControllerInterface {
                     .addComponent(msgSendComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sendMsgToSelectedUnit, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(sendMsgScrollPane)
+                .addComponent(sendMsgScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -412,7 +414,7 @@ public class MainController extends JFrame implements MainControllerInterface {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(mainTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(areaStatusPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(areaStatusPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(unitTrackingPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(3, 3, 3)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -436,8 +438,7 @@ public class MainController extends JFrame implements MainControllerInterface {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(warStrengthPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(unitTrackingPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(unitTrackingPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(3, 3, 3))
         );
 
@@ -464,8 +465,8 @@ public class MainController extends JFrame implements MainControllerInterface {
             } else {
                 JOptionPane.showMessageDialog(this, "Option Not Selected", "Error", JOptionPane.ERROR_MESSAGE);
             }
-        }else{
-              JOptionPane.showMessageDialog(this, "Can not Send Empty Message", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Can not Send Empty Message", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_sendMsgBtnActionPerformed
 
